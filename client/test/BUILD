@@ -1,6 +1,5 @@
 # gazelle:ignore
 load("@io_bazel_rules_go//go:def.bzl", "go_library", "go_test")
-load("@org_pubref_rules_protobuf//go:rules.bzl", "GRPC_COMPILE_DEPS")
 
 go_library(
     name = "go_default_library",
@@ -8,7 +7,8 @@ go_library(
     visibility = ["//visibility:public"],
     deps = [
         "//src/proto:go_proto",
-    ] + GRPC_COMPILE_DEPS,
+        "@org_golang_google_grpc//:go_default_library",
+    ],
 )
 
 go_test(
