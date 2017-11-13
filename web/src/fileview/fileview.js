@@ -174,7 +174,11 @@ function init(initData) {
     url = url.replace('{lno}', lno);
     url = url.replace('{version}', initData.commit);
     url = url.replace('{name}', repoName);
-    url = url.replace('{path}', pathInRepo);
+    // avoid double `//` if they prefixed `{path}` with a slash
+    if (url.indexOf('/{path}') === -1)
+      url = url.replace('{path}', path);
+    else
+      url = url.replace('/{path}', path);
     return url;
   }
 
