@@ -63,6 +63,8 @@ function url(tree, version, path, lno) {
 }
 
 function internalUrl(tree, path, lno) {
+  // Avoid double `//` by trimming path
+  path = path.replace(/^\/+/, '');
   var url = "/view/" + tree + "/" + path;
   if (lno !== undefined) {
     url += "#L" + lno;
